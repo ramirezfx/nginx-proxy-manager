@@ -14,8 +14,8 @@ services:
       DB_MYSQL_PASSWORD: "npm"
       DB_MYSQL_NAME: "npm"
     volumes:
-      - ./data:/data
-      - ./letsencrypt:/etc/letsencrypt
+      - nginx_data:/data
+      - nginx_letsencrypt:/etc/letsencrypt
   dbrevproxy:
     image: 'jc21/mariadb-aria:latest'
     restart: unless-stopped
@@ -25,4 +25,8 @@ services:
       MYSQL_USER: 'npm'
       MYSQL_PASSWORD: 'npm'
     volumes:
-      - ./data/mysql:/var/lib/mysql
+      - nginx_db:/var/lib/mysql
+volumes:
+  nginx_data: {}
+  nginx_letsencrypt: {}
+  nginx_db: {}
